@@ -52,6 +52,8 @@ public class Solution844_2 {
     [TestCase("a#c", "b", false)]
     [TestCase("bxj##tw", "bxo#j##tw", true)]
     [TestCase("bxj##tw", "bxj###tw", false)]
+    [TestCase("a#c###", "ad#c", false)]
+    [TestCase("bbbextm", "bbb#extm", false)]
     public void BaseTestCases(string s, string t, bool expectedResult)
     {
         var result = BackspaceCompare(s, t);
@@ -60,74 +62,39 @@ public class Solution844_2 {
     
     public bool BackspaceCompare(string s, string t)
     {
-        char? sChar = null;
-        var sIndex = s.Length - 1;
-        var sBackspaces = 0;
-        
-        char? tChar = null;
-        var tIndex = t.Length - 1;
-        var tBackspaces = 0;
-        
-        while (sIndex > 0 || tIndex > 0)
-        {
-            if (s[sIndex] == '#')
-            {
-                sBackspaces++;
-                DecreaseSIndex();
-            }
-            else if (sBackspaces > 0)
-            {
-                sBackspaces--;
-                DecreaseSIndex();
-            }
-            else
-            {
-                if (sChar == null)
-                {
-                    sChar = s[sIndex];
-                    DecreaseSIndex();
-                }
-            }
-            
-                
-            if (t[tIndex] == '#')
-            {
-                tBackspaces++;
-                DecreaseTIndex();
-            }
-            else if (tBackspaces > 0)
-            {
-                tBackspaces--;
-                DecreaseTIndex();
-            }
-            else
-            {
-                if (tChar == null)
-                {
-                    tChar = t[tIndex];
-                    DecreaseTIndex();
-                }
-            }
+        var sLastHandledIndex = s.Length;
+        var tLastHandledIndex = t.Length;
 
-            if (tChar is not null && sChar is not null && sChar != tChar)
+        while (tLastHandledIndex > 0 || sLastHandledIndex > 0)
+        {
+            var sSymbol = GetNextSymbol(s, ref sLastHandledIndex);
+            var tSymbol = GetNextSymbol(t, ref tLastHandledIndex);
+
+            if (sSymbol != tSymbol)
                 return false;
-              
-            if (tChar is not null && sChar is not null)
-                tChar = sChar = null;
+        }
+        
+        return true;
+    }
+
+    private char? GetNextSymbol(string str, ref int lastHandledIndex)
+    {
+        if (lastHandledIndex < 0)
+            return null;
+
+        var backspaces = 0;
+        for (var i = lastHandledIndex - 1; i >= 0; i--)
+        {
+            lastHandledIndex = i;
+            var symbol = str[i];
+            if (symbol == '#')
+                backspaces++;
+            else if (backspaces > 0)
+                backspaces--;
+            else
+                return symbol; 
         }
 
-        void DecreaseSIndex()
-        {
-            if(sIndex == 0)
-                return;
-            sIndex--;
-        } 
-        void DecreaseTIndex()
-        {
-            if(tIndex == 0)
-                return;
-            tIndex--;
-        }
-        return true;
+        return null;
     }
 }
