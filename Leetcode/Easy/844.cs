@@ -3,6 +3,7 @@ using NUnit.Framework;
 
 namespace Leetcode.Easy;
 
+// not lazy algorithm
 public class Solution844_1 {
     
     [TestCase("c#d#", "ab##", true)]
@@ -42,6 +43,7 @@ public class Solution844_1 {
     }
 }
 
+// lazy algorithm
 public class Solution844_2 {
     
     [TestCase("c#d#", "ab##", true)]
