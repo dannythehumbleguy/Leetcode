@@ -2,6 +2,7 @@
 
 namespace Leetcode.Easy;
 
+// Solution with BFS
 public class Solution111_1
 {
     [Test]
