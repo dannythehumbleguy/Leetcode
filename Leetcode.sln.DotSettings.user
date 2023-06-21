@@ -18,5 +18,7 @@
     &lt;TestId&gt;NUnit3x::A017E647-0AC2-4BCC-B5CA-82BC57748D45::net6.0::Leetcode.Easy.Solution14.BaseTest&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;NUnit3x::A017E647-0AC2-4BCC-B5CA-82BC57748D45::net6.0::Leetcode.Easy.Solution14_1.BaseTest&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;NUnit3x::A017E647-0AC2-4BCC-B5CA-82BC57748D45::net6.0::Leetcode.Easy.Solution14_1&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::A017E647-0AC2-4BCC-B5CA-82BC57748D45::net6.0::Leetcode.Medium.Solution5_1.BaseTests("babad","bab")&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::A017E647-0AC2-4BCC-B5CA-82BC57748D45::net6.0::Leetcode.Medium.Solution5_1.BaseTests&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
