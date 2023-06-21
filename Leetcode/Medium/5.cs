@@ -18,45 +18,45 @@ public class Solution5_1
         if (input.Length == 0)
             return input;
         
-        var palindromeMiddles = GetPalindromeMiddles(input);
-        if (palindromeMiddles.Count == 0)
-            return input[0].ToString();
+        var leftMaxPalindromeIndex = 0;
+        var rightMaxPalindromeIndex = 0;
 
-        var leftPalindromeIndex = 0;
-        var rightPalindromeIndex = 0;
-
-        foreach (var (leftOrMiddleStart, rightStart) in palindromeMiddles)
-        {
-            var left = leftOrMiddleStart;
-            var right = rightStart ?? leftOrMiddleStart;
-
-            while (right < input.Length && left >= 0 && input[left] == input[right])
-            {
-                left--;
-                right++;
-            }
-            
-            if(rightPalindromeIndex - leftPalindromeIndex >= (right - 1) - (left + 1))
-                continue;
-
-            rightPalindromeIndex = right - 1;
-            leftPalindromeIndex = left + 1;
-        }
-
-        return input[leftPalindromeIndex..(rightPalindromeIndex + 1)];
-    }
-
-    private List<(int LeftOrMiddle, int? Right)> GetPalindromeMiddles(string input)
-    {
-        var res = new List<(int LeftOrMiddle, int? Right)>();
         for (var i = 0; i < input.Length; i++)
         {
-            if (i - 1 != -1 && i + 1 != input.Length && input[i - 1] == input[i + 1]) // xyx
-                res.Add((i, null));
             if (i + 1 != input.Length && input[i] == input[i + 1]) // xx
-                res.Add((i, i + 1));
+            {
+                var (potentialLeft, potentialRight) = Expand(input , i, i + 1);
+
+                if (rightMaxPalindromeIndex - leftMaxPalindromeIndex < potentialRight - potentialLeft)
+                {
+                    rightMaxPalindromeIndex = potentialRight;
+                    leftMaxPalindromeIndex = potentialLeft;
+                }
+            }
+            
+            if (i - 1 != -1 && i + 1 != input.Length && input[i - 1] == input[i + 1]) // xyx
+            {
+                var (potentialLeft, potentialRight) = Expand(input, i - 1, i + 1);
+
+                if (rightMaxPalindromeIndex - leftMaxPalindromeIndex < potentialRight - potentialLeft)
+                {
+                    rightMaxPalindromeIndex = potentialRight;
+                    leftMaxPalindromeIndex = potentialLeft;
+                }
+            }
+        }
+        
+        return input[leftMaxPalindromeIndex..(rightMaxPalindromeIndex + 1)];
+    }
+
+    private (int Left, int Right) Expand(string input, int left, int right)
+    {
+        while (right < input.Length && left >= 0 && input[left] == input[right])
+        {
+            left--;
+            right++;
         }
 
-        return res;
+        return (left + 1, right - 1);
     }
 }
