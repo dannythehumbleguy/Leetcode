@@ -54,50 +54,45 @@ public class Solution_977
         for (int i = 0; i < nums.Length; i++)
             nums[i] *= nums[i];
 
-        if (nums.Length < 2)
-            return nums;
-
-        int? fracture = null;
-        for (int i = 0; i < nums.Length - 1; i++)
-            if (nums[i] < nums[i + 1])
-            {
-                fracture = i;
-                break;
-            }
-
-        if (fracture is null) // All negative
-        {
-            Array.Reverse(nums);
-            return nums;
-        }
-        else if(fracture == 0) // All positive
-            return nums;
+        int turning = 0; 
+        while (turning < nums.Length - 1 && nums[turning] >= nums[turning + 1])
+            turning++;
 
         var result = new int[nums.Length];
-        var resultPointer = 0;
-        var left = fracture.Value;
-        var leftEnded = false;
-        var right = fracture.Value + 1;
-        var rightEnded = false;
+        result[0] = nums[turning];
+        var resultPoint = 1;
+        int left = turning - 1; 
+        int right = turning + 1;
 
-        while (!rightEnded || !leftEnded)
+        while (left >= 0 || right < nums.Length)
         {
-            if(!rightEnded && (leftEnded || nums[right] < nums[left]))
+            if(left < 0) // Can't move left
             {
-                result[resultPointer] = nums[right];
-                resultPointer++;
+                result[resultPoint] = nums[right];
                 right++;
-                if (right >= nums.Length)
-                    rightEnded = true;
-            }
-            else if(!leftEnded && (rightEnded || nums[right] >= nums[left]))
+            } 
+            else if(right >= nums.Length) // Can't move right
             {
-                result[resultPointer] = nums[left];
-                resultPointer++;
+                result[resultPoint] = nums[left];
                 left--;
-                if (left < 0)
-                    leftEnded = true;
             }
+            else // Can move to both sides
+            {
+                var leftNum = nums[left];
+                var rightNum = nums[right];
+                if(leftNum < rightNum)
+                {
+                    result[resultPoint] = leftNum;
+                    left--;
+                }
+                else
+                {
+                    result[resultPoint] = rightNum;
+                    right++;
+                }
+            }
+
+            resultPoint++;
         }
 
         return result;
