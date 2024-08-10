@@ -28,5 +28,8 @@
     &lt;TestId&gt;NUnit3x::A017E647-0AC2-4BCC-B5CA-82BC57748D45::net6.0::Leetcode.Medium.Solution122_1.TestCase&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;NUnit3x::A017E647-0AC2-4BCC-B5CA-82BC57748D45::net6.0::Leetcode.Medium.Solution146_1.BaseTest&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;NUnit3x::A017E647-0AC2-4BCC-B5CA-82BC57748D45::net6.0::Leetcode.Medium.Solution146_1.CornerCase&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::A017E647-0AC2-4BCC-B5CA-82BC57748D45::net6.0::Leetcode.Companies.Tinkoff.IntervalsOfZeros&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::A017E647-0AC2-4BCC-B5CA-82BC57748D45::net6.0::Leetcode.Companies.Tinkoff.IdeSearch&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::A017E647-0AC2-4BCC-B5CA-82BC57748D45::net6.0::Leetcode.Easy.Solution1&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

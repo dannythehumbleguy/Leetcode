@@ -28,17 +28,18 @@ public class Solution_334
 
     public bool IncreasingTriplet(int[] nums)
     {
-        var k = 3;
-        var buffer = new int[k + 1];
-        buffer[0] = int.MinValue; 
-        var lastFound = 0;
-        while(lastFound < k)
-        {
-            var min = int.MinValue;
-            foreach (var num in nums)
-            {
-                if()
-            }
-        }
+        //var k = 3;
+        //var buffer = new int[k + 1];
+        //buffer[0] = int.MinValue; 
+        //var lastFound = 0;
+        //while(lastFound < k)
+        //{
+        //    var min = int.MinValue;
+        //    foreach (var num in nums)
+        //    {
+        //        if()
+        //    }
+        //}
+        return true;
     }
 }
